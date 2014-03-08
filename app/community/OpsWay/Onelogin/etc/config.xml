@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <OpsWay_Onelogin>
+            <version>0.1.0</version>
+        </OpsWay_Onelogin>
+    </modules>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <OpsWay_Onelogin before="Mage_Adminhtml">OpsWay_Onelogin_Adminhtml</OpsWay_Onelogin>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <events>
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <opsway_onelogin>
+                        <class>opsway_onelogin/observer</class>
+                        <method>coreBlockAbstractToHtmlAfter</method>
+                    </opsway_onelogin>
+                </observers>
+            </core_block_abstract_to_html_after>
+        </events>
+    </adminhtml>
+
+    <global>
+        <helpers>
+            <opsway_onelogin>
+                <class>OpsWay_Onelogin_Helper</class>
+            </opsway_onelogin>
+        </helpers>        
+
+        <models>
+            <opsway_onelogin>
+                <class>OpsWay_Onelogin_Model</class>
+                <resourceModel>opsway_onelogin_resource</resourceModel>
+            </opsway_onelogin>
+            
+            <opsway_onelogin_resource>
+                <class>OpsWay_Onelogin_Model_Resource</class>
+            </opsway_onelogin_resource>
+            
+            <admin>
+                <rewrite>
+                    <observer>OpsWay_Onelogin_Model_Admin_Observer</observer>
+                </rewrite>
+            </admin>
+        </models>
+
+        <resources>
+            <opsway_onelogin_setup>
+                <setup>
+                    <module>OpsWay_Onelogin</module>
+                </setup>
+            </opsway_onelogin_setup>
+        </resources>
+    </global>
+    <default>
+        <dev>
+            <onelogin>
+                    <app_id>357942</app_id>
+                    <certificate><![CDATA[-----BEGIN CERTIFICATE-----
+MIIEETCCAvmgAwIBAgIUJEUIqv5G0+cLHzcX1xCJr0ZzI1UwDQYJKoZIhvcNAQEF
+BQAwVjELMAkGA1UEBhMCVVMxDzANBgNVBAoMBk9wc3dheTEVMBMGA1UECwwMT25l
+TG9naW4gSWRQMR8wHQYDVQQDDBZPbmVMb2dpbiBBY2NvdW50IDM4NTIwMB4XDTE0
+MDIxNzE1MTc0OFoXDTE5MDIxODE1MTc0OFowVjELMAkGA1UEBhMCVVMxDzANBgNV
+BAoMBk9wc3dheTEVMBMGA1UECwwMT25lTG9naW4gSWRQMR8wHQYDVQQDDBZPbmVM
+b2dpbiBBY2NvdW50IDM4NTIwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC
+AQEAl51d1gTtGGQyLBhHQ3/MqeS+xg7WeOqLZzDaR8UxGx2zgW9EV1rpbzStyeA2
+0sgobKGArZnGhtXqnAIx9QadS50Wi1S6xlcJ4n/K79SRafayoaJlOONlskC1g7pO
+p0DglqLpfinECkMkwr7wwTd0kWE647sQMhbJiu8/KbHfBm9mbem18ba2Ly6dhDjf
+aN/+fCPwMteRiyOCQmVuRLU1MP7p7YdEqZ5unnJeszfIomTSThHWm6ipnjKccFr8
+2qdCwQ3vsWu0lnPo4Bs/rkrxRkjXA0Rz0UralWl2qT1aYM6QvcmYcveE5BbiH4wF
+0F+t+//+DzxNgAADChxv5fHE0wIDAQABo4HWMIHTMAwGA1UdEwEB/wQCMAAwHQYD
+VR0OBBYEFDbR5w/UfTtdX7jDnZe5wG4fYTA+MIGTBgNVHSMEgYswgYiAFDbR5w/U
+fTtdX7jDnZe5wG4fYTA+oVqkWDBWMQswCQYDVQQGEwJVUzEPMA0GA1UECgwGT3Bz
+d2F5MRUwEwYDVQQLDAxPbmVMb2dpbiBJZFAxHzAdBgNVBAMMFk9uZUxvZ2luIEFj
+Y291bnQgMzg1MjCCFCRFCKr+RtPnCx83F9cQia9GcyNVMA4GA1UdDwEB/wQEAwIH
+gDANBgkqhkiG9w0BAQUFAAOCAQEAkVVg/+r7gVFH4+g1CM35RcXZWhFS4yiXaQ7r
+pj1BBCB8BRhfYmYbtKXDVjUjKM7Nzyw58Ae2z+BhYneyYVZ31/CupCjlcUam3zTl
++NkfsVKnsVkS+cBaUKkwUrCub/H6/ScpU2n79ehFBma5E66HslJSHEHA0A/0taZM
+IBG3AHR+6YXsz8hu/Kk5XUKCx9sGlITG7OoeHJNa5WjZFyUpuL5eCi4yV/y3piAO
+3e8TlR/M+j0qQJMgE3B8ofd3pqxfx2rKyiMQ4X89WLQx9jKqCcdC3DklsH+x46fF
+gMQ8vjqAEfYOUj3Zcbm+9i9LtzRzg71Xe6oyYkHJnu3LCXT4zw==
+-----END CERTIFICATE-----]]></certificate>            
+            </onelogin>
+        </dev>
+    </default>
+</config>
