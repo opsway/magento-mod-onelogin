@@ -53,14 +53,6 @@
                 </rewrite>
             </admin>
         </models>
-
-        <resources>
-            <opsway_onelogin_setup>
-                <setup>
-                    <module>OpsWay_Onelogin</module>
-                </setup>
-            </opsway_onelogin_setup>
-        </resources>
     </global>
     <default>
         <dev>
