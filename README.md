@@ -1,4 +1,4 @@
-Magento Admin - Onelogin integration
+Magento Admin - Onelogin integration (SAML)
 ==============
 
 Magento module that makes it possible to login to Magento Admin via [Onelogin](http://onelogin.com) Identity provider
@@ -27,3 +27,9 @@ You should copy two things:
 Go to System->Configuration->Developer->Onelogin and put application ID and certificate that you found on previous step.
 
 3. Flush Magento caches and you are done - you can now click on "Login via Onelogin" and see how magic happens
+
+Credits
+--------------
+ - Hugely inspired by https://github.com/Flagbit/magento-openid
+ - and based on SAML implementation of https://github.com/onelogin/php-saml
+ - also xmlseclibs are used from https://code.google.com/p/xmlseclibs/
