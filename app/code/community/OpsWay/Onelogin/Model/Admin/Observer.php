@@ -30,6 +30,7 @@ class OpsWay_Onelogin_Model_Admin_Observer extends Mage_Admin_Model_Observer
         if ($this->_session->isLoggedIn() ||  
              !('admin' === $this->_request->getModuleName() &&
              'onelogin' === $this->_request->getControllerName())) {
+            if(!isset($event)) { $event = ''; }
             return parent::actionPreDispatchAdmin($event);
         }
     }
