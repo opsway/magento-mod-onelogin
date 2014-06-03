@@ -1,18 +1,21 @@
 Magento Admin - Onelogin integration (SAML)
-==============
+===========================================
 
 Magento module that makes it possible to login to Magento Admin via [Onelogin](http://onelogin.com) Identity provider
 
+This module is based on the [OPSWAY module](https://github.com/opsway/magento-mod-onelogin) and uses the new [Onelogin PHP SAML Toolkit](https://github.com/onelogin/php-saml).
+
 Magento versions support
---------------
+------------------------
 Tested on Magento CE 1.7+, Magento EE 1.13
 
 How does it work?
---------------
+-----------------
 
 Module adds a link "Login via Onelogin" on backend login form. Following this links initiates series of redirects that are described by [SAML 2.0 standart](http://en.wikipedia.org/wiki/SAML_2.0)
 
 User authenticates against onelogin.com application and then information about user email is sent to Magento. Magento authenticate user by email and let him in.
+
 
 Usage
 --------------
@@ -27,7 +30,7 @@ You should copy two things:
 - X.509 certificate
 
 2. Now you can copy module to your Magento folder and configure it.
-Go to System->Configuration->Developer->Onelogin and put application ID and certificate that you found on previous step.
+Go to System->Configuration->Developer->Onelogin and put there the required settings.
 
 3. Flush Magento caches and you are done - you can now click on "Login via Onelogin" and see how magic happens
 

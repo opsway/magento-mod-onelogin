@@ -44,15 +44,18 @@ class OpsWay_Onelogin_Model_Observer
             $oneloginLink->addAttribute('class', 'left');
             $oneloginLink->addAttribute('style', 'margin-left: 10px');
 
-            $settings = new OneLogin_Saml_Settings();  
-            $settings->idpSingleSignOnUrl = $settings->idpSingleSignOnUrl . Mage::getStoreConfig('dev/onelogin/app_id');
-            $settings->idpPublicCertificate = Mage::getStoreConfig('dev/onelogin/certificate');
-            $settings->spReturnUrl = rtrim(Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB),"/") . Mage::app()->getRequest()->getRequestUri();
+            require(dirname(dirname(__FILE__)).'/settings.php');
+            $SAMLsettings = new OneLogin_Saml2_Settings($settings);
+            $idpData = $SAMLsettings->getIdPData();
+            $idpSSO = '';
+            if (isset($idpData['singleSignOnService']) && isset($idpData['singleSignOnService']['url'])) {
+                $idpSSO = $idpData['singleSignOnService']['url'];
+                $authnRequest = new OneLogin_Saml2_AuthnRequest($SAMLsettings);
+                $parameters['SAMLRequest'] = $authnRequest->getRequest();
+                $idpSSO = OneLogin_Saml2_Utils::redirect($idpSSO, $parameters, true);
+            }
             
-            $authRequest = new OneLogin_Saml_AuthRequest($settings);
-            $samlUrl = $authRequest->getRedirectUrl();
-
-            $oneloginLink->addAttribute('href', $samlUrl);
+            $oneloginLink->addAttribute('href', $idpSSO);
 
             $html = $xml->saveXML();
             

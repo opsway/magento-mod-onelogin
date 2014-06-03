@@ -81,7 +81,8 @@ pj1BBCB8BRhfYmYbtKXDVjUjKM7Nzyw58Ae2z+BhYneyYVZ31/CupCjlcUam3zTl
 IBG3AHR+6YXsz8hu/Kk5XUKCx9sGlITG7OoeHJNa5WjZFyUpuL5eCi4yV/y3piAO
 3e8TlR/M+j0qQJMgE3B8ofd3pqxfx2rKyiMQ4X89WLQx9jKqCcdC3DklsH+x46fF
 gMQ8vjqAEfYOUj3Zcbm+9i9LtzRzg71Xe6oyYkHJnu3LCXT4zw==
------END CERTIFICATE-----]]></certificate>            
+-----END CERTIFICATE-----]]></certificate>
+            <magentorole1>Administrators</magentorole1>
             </onelogin>
         </dev>
     </default>
