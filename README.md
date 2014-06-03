@@ -34,6 +34,21 @@ Go to System->Configuration->Developer->Onelogin and put there the required sett
 
 3. Flush Magento caches and you are done - you can now click on "Login via Onelogin" and see how magic happens
 
+
+Common field names for the attributes are:
+Username:  User.Username
+Email: User.email
+First Name: User.FirstName
+Last Name: User.LastName
+Role: memberOf
+
+If the required attributes are not provided by the IdP, the user account can’t be created.
+(if the account already exists, only the email is required to log in).
+
+When creating a new account, Magento will try to map the Onelogin provided role to a Magento Role.
+
+If the magento account does not have a “Magento Admin Role” like “Administrators”, then the user will not be allowed to access to the admin panel.
+
 Credits
 --------------
  - Hugely inspired by https://github.com/Flagbit/magento-openid
