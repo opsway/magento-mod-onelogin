@@ -36,11 +36,12 @@ Go to System->Configuration->Developer->Onelogin and put there the required sett
 
 
 Common field names for the attributes are:
-Username:  User.Username
-Email: User.email
-First Name: User.FirstName
-Last Name: User.LastName
-Role: memberOf
+
+  * Username:  User.Username
+  * Email: User.email
+  * First Name: User.FirstName
+  * Last Name: User.LastName
+  * Role: memberOf
 
 If the required attributes are not provided by the IdP, the user account can’t be created.
 (if the account already exists, only the email is required to log in).
