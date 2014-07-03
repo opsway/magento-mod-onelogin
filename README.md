@@ -3,8 +3,6 @@ Magento Admin - Onelogin integration (SAML)
 
 Magento module that makes it possible to login to Magento Admin via [Onelogin](http://onelogin.com) Identity provider
 
-This module is based on the [OPSWAY module](https://github.com/opsway/magento-mod-onelogin) and uses the new [Onelogin PHP SAML Toolkit](https://github.com/onelogin/php-saml).
-
 Magento versions support
 ------------------------
 Tested on Magento CE 1.7+, Magento EE 1.13
@@ -35,6 +33,13 @@ Go to System->Configuration->Developer->Onelogin and put there the required sett
 3. Flush Magento caches and you are done - you can now click on "Login via Onelogin" and see how magic happens
 
 
+User auto-creation
+--------------
+You can enable Onelogin module to create users based on data supplied by IdP
+Just enable System->Configuration->Developer->Onelogin->Create user if not exists 
+
+
+You'll need to map fields in Magento to those in Onelogin.
 Common field names for the attributes are:
 
   * Username:  User.Username
@@ -47,6 +52,9 @@ If the required attributes are not provided by the IdP, the user account can’t
 (if the account already exists, only the email is required to log in).
 
 When creating a new account, Magento will try to map the Onelogin provided role to a Magento Role.
+
+As soon as Magento role names might not be the same as Onelogin role names, module enables you to map them. You have three separate fields to map Magento-Onelogin pairs.
+You can map several Onelogin roles to single Magento role separating them with comas.
 
 If the magento account does not have a “Magento Admin Role” like “Administrators”, then the user will not be allowed to access to the admin panel.
 
