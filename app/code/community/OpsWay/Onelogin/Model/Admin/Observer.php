@@ -35,16 +35,76 @@ class OpsWay_Onelogin_Model_Admin_Observer extends Mage_Admin_Model_Observer
         }
     }
 
-    private function getAssumedUserEmail() {
+    private function getUserData() {
         $postSAMLResponse =$this->_request->getPost("SAMLResponse");
-        $settings = new OneLogin_Saml_Settings(); 
-        $settings->idpSingleSignOnUrl = $settings->idpSingleSignOnUrl . Mage::getStoreConfig('dev/onelogin/app_id');
-        $settings->idpPublicCertificate = Mage::getStoreConfig('dev/onelogin/certificate');
-
-        $samlResponse = new OneLogin_Saml_Response($settings, $postSAMLResponse);
+        require(dirname(dirname(dirname(__FILE__))).'/settings.php');
+        $SAMLsettings = new OneLogin_Saml2_Settings($settings);
+        $samlResponse = new OneLogin_Saml2_Response($SAMLsettings, $postSAMLResponse);
         try {
             if ($samlResponse->isValid()) {
-                return $samlResponse->getNameId();
+                $userData = array();
+                $attrs = $samlResponse->getAttributes();
+                if (!empty($attrs)) {                    
+                    $usernameMap = Mage::getStoreConfig('dev/onelogin/username');
+                    if (isset($attrs[$usernameMap])) {
+                        $userData['username'] = $attrs[$usernameMap][0];
+                    }
+                    $emailMap = Mage::getStoreConfig('dev/onelogin/email');
+                    if (isset($attrs[$emailMap])) {
+                        $userData['email'] = $attrs[$emailMap][0];
+                    }
+
+                    $firstNameMap = Mage::getStoreConfig('dev/onelogin/firstname');
+                    if (isset($attrs[$firstNameMap])) {
+                        $userData['first_name'] = $attrs[$firstNameMap][0];
+                    }
+
+
+                    $lastNameMap = Mage::getStoreConfig('dev/onelogin/lastname');
+                    if (isset($attrs[$lastNameMap])) {
+                        $userData['last_name'] = $attrs[$lastNameMap][0];
+                    }
+
+                    $roleMap = Mage::getStoreConfig('dev/onelogin/role');
+                    if (isset($attrs[$roleMap])) {
+                        $roles = $attrs[$roleMap];
+                        if (!empty($roles)) {
+                            $userData['role'] = array();
+                            $role1 = Mage::getStoreConfig('dev/onelogin/magentorole1');
+                            $roleMap1 = explode(',', Mage::getStoreConfig('dev/onelogin/magentomapping1'));
+                            $role2 = Mage::getStoreConfig('dev/onelogin/magentorole2');
+                            $roleMap2 = explode(',', Mage::getStoreConfig('dev/onelogin/magentomapping2'));
+                            $role3 = Mage::getStoreConfig('dev/onelogin/magentorole3');
+                            $roleMap3 = explode(',', Mage::getStoreConfig('dev/onelogin/magentomapping3'));
+
+                            foreach ($roles as $role) {
+                                if (in_array($role, $roleMap1)) {
+                                    $userData['role'][] = $role1;
+                                }
+                                if (in_array($role, $roleMap2)) {
+                                    $userData['role'][] = $role2;
+                                }
+                                if (in_array($role, $roleMap3)) {
+                                    $userData['role'][] = $role3;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (!isset($userData['email']) || empty($userData['email'])) {
+                    $userData['email'] = $samlResponse->getNameId();    
+                }
+
+                if (!isset($userData['username']) || empty($userData['username'])) {
+                    $userData['username'] = $userData['email'];   
+                }
+
+                if (!isset($userData['first_name']) || empty($userData['first_name'])) {
+                    $userData['first_name'] = '.';
+                }
+                
+                return $userData;
             } else {
                 Mage::throwException(Mage::helper('adminhtml')->__('Invalid SAML response.'));
             }
@@ -65,7 +125,8 @@ class OpsWay_Onelogin_Model_Admin_Observer extends Mage_Admin_Model_Observer
         if ('saml' === $this->_request->getActionName()) {
             $this->_request->setDispatched(true);
         } elseif ('login' === $this->_request->getActionName() && $this->_request->getPost("SAMLResponse")) {
-            $this->_session->loginByEmail($this->getAssumedUserEmail(),$this->_request);
+            $userData = $this->getUserData();
+            $this->_session->loginByEmail($userData, $this->_request);
         } else {
             return parent::actionPreDispatchAdmin($event);
         }

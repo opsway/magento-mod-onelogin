@@ -22,12 +22,114 @@
                             </app_id>
                             <certificate translate="label">
                                 <label>x.509 certificate</label>
+                                <comment><![CDATA[Public x509 certificate of the IdP. ("X.509 certificate")]]></comment>
                                 <frontend_type>textarea</frontend_type>
-                                <sort_order>5</sort_order>
+                                <sort_order>2</sort_order>
                                 <show_in_default>1</show_in_default>
                                 <show_in_website>0</show_in_website>
                                 <show_in_store>0</show_in_store>
                             </certificate>
+                            <provisioning translate="label">
+                                <label>Create user if not exists</label>
+                                <comment><![CDATA[Auto-provisioning. If user not exists, Wordpress will create a new user with the data provided by the IdP. Review the Mapping fields.]]></comment>
+                                <frontend_type>select</frontend_type>                               
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>3</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>0</show_in_website>
+                                <show_in_store>0</show_in_store>
+                            </provisioning>
+                            <username translate="label comment">
+                                <label>Username</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>5</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>0</show_in_website>
+                                <show_in_store>0</show_in_store>
+                            </username>
+                            <email translate="label comment">
+                                <label>Email</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>6</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>0</show_in_website>
+                                <show_in_store>0</show_in_store>
+                            </email>
+                            <firstname translate="label comment">
+                                <label>First Name</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>7</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>0</show_in_website>
+                                <show_in_store>0</show_in_store>
+                            </firstname>
+                            <lastname translate="label comment">
+                                <label>Last Name</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>8</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>0</show_in_website>
+                                <show_in_store>0</show_in_store>
+                            </lastname>
+                            <role translate="label comment">
+                                <label>Role</label>
+                                <comment><![CDATA[The attribute that contains the role of the user, For example 'memberof'. If Wordpress can't figure what role assign to the user, it will assign the default role defined at the general settings.]]></comment>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>9</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>0</show_in_website>
+                                <show_in_store>0</show_in_store>
+                            </role>
+                            <magentorole1 translate="label comment">
+                                <label>Magento Role 1</label>
+                                <comment><![CDATA[Set the name of one Magento Role.]]></comment>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>10</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>0</show_in_website>
+                                <show_in_store>0</show_in_store>
+                            </magentorole1>
+                            <magentomapping1 translate="label comment">
+                                <label>Magento Role mapping 1</label>
+                                <comment><![CDATA[The IdP can use it's own roles. Set here the mapping between IdP and Magento Role 1. Accepts multiple valued comma separated. Example: admin,owner,superuser]]></comment>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>11</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>0</show_in_website>
+                                <show_in_store>0</show_in_store>
+                            </magentomapping1>                            
+                            <magentorole2 translate="label comment">
+                                <label>Magento Role 2</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>12</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>0</show_in_website>
+                                <show_in_store>0</show_in_store>
+                            </magentorole2>
+                            <magentomapping2 translate="label comment">
+                                <label>Magento Role mapping 2</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>13</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>0</show_in_website>
+                                <show_in_store>0</show_in_store>
+                            </magentomapping2>                            
+                            <magentorole3 translate="label comment">
+                                <label>Magento Role 3</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>14</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>0</show_in_website>
+                                <show_in_store>0</show_in_store>
+                            </magentorole3>
+                            <magentomapping3 translate="label comment">
+                                <label>Magento Role mapping 3</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>15</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>0</show_in_website>
+                                <show_in_store>0</show_in_store>
+                            </magentomapping3>                                                                                   
                         </fields>
                 </onelogin>
             </groups>
