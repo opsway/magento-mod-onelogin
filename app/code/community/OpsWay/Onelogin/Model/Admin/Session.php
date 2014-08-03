@@ -76,7 +76,11 @@ class OpsWay_Onelogin_Model_Admin_Session extends Mage_Admin_Model_Session
                 $user->login($username, '');
 
                 if ($user->getId()) {
-                    $this->renewSession();
+                    if (method_exists($this,'renewSession')) {
+                        $this->renewSession();
+                    } else {
+                        $this->renewCompatibleSession();
+                    }
                     if (Mage::getSingleton('adminhtml/url')->useSecretKey()) {
                         Mage::getSingleton('adminhtml/url')->renewSecretUrls();
                     }
@@ -105,5 +109,12 @@ class OpsWay_Onelogin_Model_Admin_Session extends Mage_Admin_Model_Session
             return $user;
         }
         return false;
+    }
+
+    public function renewCompatibleSession()
+    {
+        $this->getCookie()->delete($this->getSessionName());
+        session_regenerate_id(true);
+        return $this;
     }
 }

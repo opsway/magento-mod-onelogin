@@ -26,7 +26,7 @@ class OpsWay_Onelogin_Model_Admin_Observer extends Mage_Admin_Model_Observer
     private $_session;
     private $_request;
 
-    private function _skipIfNotOnelogin() {
+    private function _skipIfNotOnelogin($event) {
         if ($this->_session->isLoggedIn() ||  
              !('admin' === $this->_request->getModuleName() &&
              'onelogin' === $this->_request->getControllerName())) {
@@ -121,7 +121,7 @@ class OpsWay_Onelogin_Model_Admin_Observer extends Mage_Admin_Model_Observer
         $this->_request = Mage::app()->getRequest();
 
 
-        $this->_skipIfNotOnelogin();
+        $this->_skipIfNotOnelogin($event);
         if ('saml' === $this->_request->getActionName()) {
             $this->_request->setDispatched(true);
         } elseif ('login' === $this->_request->getActionName() && $this->_request->getPost("SAMLResponse")) {
