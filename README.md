@@ -5,7 +5,7 @@ Magento module that makes it possible to login to Magento Admin via [Onelogin](h
 
 Magento versions support
 ------------------------
-Compatible with Magento CE 1.5+, Magento EE 1.9+
+Compatible with Magento CE 1.4+, Magento EE 1.9+
 
 How does it work?
 -----------------

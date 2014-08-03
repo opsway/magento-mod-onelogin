@@ -16,7 +16,7 @@ $settings = array (
     'sp' => array (
         'entityId' => 'php-saml',
         'assertionConsumerService' => array (
-            'url' => rtrim(Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB), "/") . '/index.php/admin',
+            'url' => Mage::helper("adminhtml")->getUrl(),
         ),
         'NameIDFormat' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
     ),
