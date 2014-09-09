@@ -1,0 +1,15 @@
+{
+  "name":"opsway/magento-onelogin",
+  "type":"magento-module",
+  "license":"BSD-3-Clause",
+  "homepage":"https://github.com/opsway/magento-mod-onelogin",
+  "description":"Module that makes it possible to login to Magento Admin via Onelogin Identity provider",
+  "authors":[
+    {
+      "name":"Andriy Samilyak"
+    }
+  ],
+  "require":{
+    "magento-hackathon/magento-composer-installer":"*"
+  }
+}
