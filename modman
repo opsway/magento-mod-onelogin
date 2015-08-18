@@ -1,3 +1,4 @@
 app/etc/modules/*                   app/etc/modules/
 app/code/community/OpsWay/Onelogin  app/code/community/OpsWay/Onelogin
 lib/*                               lib/
+src/*								src/
