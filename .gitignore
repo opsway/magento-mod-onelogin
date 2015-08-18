@@ -1,0 +1,8 @@
+*
+!/src/
+!.gitignore
+!composer.json
+!modman
+!.gitmodules
+!magento-tar-to-connect.php
+!connect-config.php
