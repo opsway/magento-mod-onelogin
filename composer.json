@@ -11,5 +11,8 @@
   ],
   "require":{
     "magento-hackathon/magento-composer-installer":"*"
+  },
+  "replace": {
+    "connect20/opsway_opswayonelogin": "self.version"
   }
 }
