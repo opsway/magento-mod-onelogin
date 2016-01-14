@@ -8,6 +8,18 @@ $appId = Mage::getStoreConfig('dev/onelogin/app_id');
 
 require_once('_toolkit_loader.php');
 
+if (!in_array(Mage::app()->getFrontController()->getAction()->getFullActionName(),
+    array('cms_index_noRoute', 'cms_index_defaultNoRoute'))
+) {
+    $currentUrl = Mage::helper('core/url')->getCurrentUrl();
+    $adminUrl = Mage::app()->getStore()->getUrl('adminhtml');
+    if (stripos($currentUrl, $adminUrl) === false) {
+        $currentUrl = $adminUrl;
+    }
+} else {
+    $currentUrl = Mage::helper("adminhtml")->getUrl();
+}
+
 $settings = array (
 
     'strict' => false,
@@ -16,7 +28,7 @@ $settings = array (
     'sp' => array (
         'entityId' => 'php-saml',
         'assertionConsumerService' => array (
-            'url' => Mage::helper("adminhtml")->getUrl(),
+            'url' => $currentUrl,
         ),
         'NameIDFormat' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
     ),
